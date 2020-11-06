@@ -7,30 +7,32 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class CustomClassLoader extends ClassLoader {
-    private byte[] getFile(String fileName) throws IOException {
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName+".xlass");
-        byte[] res, trans;
-        ByteArrayOutputStream byteOS = new ByteArrayOutputStream();
-        trans = new byte[1];
-        int b = 0;
-        while ((b = is.read(trans)) != -1) {
-            trans[0] = (byte) (255 - trans[0]);
+    private byte[] getFile(String fileName) {
+        try(InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName+".xlass");
+            ByteArrayOutputStream byteOS = new ByteArrayOutputStream();) {
+            byte[] res, trans;
+            trans = new byte[1];
+            int b = 0;
+            while ((b = is.read(trans)) != -1) {
+                trans[0] = (byte) (255 - trans[0]);
 
-            byteOS.write(trans);
+                byteOS.write(trans);
+            }
+            res = byteOS.toByteArray();
+            return res;
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
         }
-        res = byteOS.toByteArray();
-        return res;
     }
 
     @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-        try {
+    protected Class<?> findClass(String name) {
             byte[] b = getFile(name);
-            return defineClass(name, b, 0, b.length);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+            if (b !=null) {
+                return defineClass(name, b, 0, b.length);
+            }
+            return null;
     }
 
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class CustomClassLoader extends ClassLoader {
             hello.setAccessible(true);
             hello.invoke(clz.newInstance());
 
-        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
