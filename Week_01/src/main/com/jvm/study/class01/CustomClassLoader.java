@@ -6,6 +6,20 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+ /**
+ * JVM读取.class
+ * 1.加载 （二进制）
+ * 2.验证（语义分析）
+ * 3.准备（分配内存，static初始化）
+ * 4.解析（类，接口，字段，类方法等）
+ * 5.初始化（静态变量赋值，执行静态代码块）
+ * 6.使用(创建实例对象)
+ * 7.卸载（从方法区卸载）
+  *  类加载器
+  *  BootStrap Loader --- null 核心类库
+  *  Extension ClassLoader --- 扩展类库
+  *  application ClassLoader --- 用户应用程序加载（java -cp）
+ */
 public class CustomClassLoader extends ClassLoader {
     private byte[] getFile(String fileName) {
         try(InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName+".xlass");
