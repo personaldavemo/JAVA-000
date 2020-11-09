@@ -9,7 +9,7 @@ public class DirectMemoryOOM {
 
     /**
      * -Xmx20M -XX:MaxDirectMemorySize=10M
-     * nio激素hi分配直接内存
+     * nio分配直接内存
      */
     public static void main(String[] args) throws IllegalAccessException {
         Field unsafe = Unsafe.class.getDeclaredFields()[0];
