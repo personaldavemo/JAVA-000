@@ -16,7 +16,7 @@ public class SynchronousQueueTest {
         });
 
         Thread take = new Thread(() ->{
-            System.out.println("put elemt...");
+            System.out.println("take elemt...");
             try {
                 System.out.println(synchronousQueue.take());
             } catch (InterruptedException e) {

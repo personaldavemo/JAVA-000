@@ -118,7 +118,6 @@ public class ThreadPoolTest {
          * Executors.newScheduledThreadPool(n);
          */
        ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(5);
-        //3s执行异常
         executor.schedule(new Runnable() {
             @Override
             public void run() {
