@@ -24,9 +24,10 @@ public class SynchronousQueueTest {
             }
             System.out.println("put done...");
         });
-        //阻塞到有take
+        //阻塞
         put.start();
         Thread.sleep(2000L);
+        //阻塞
         take.start();
     }
 }
