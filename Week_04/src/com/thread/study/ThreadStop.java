@@ -1,5 +1,5 @@
 package com.thread.study;
-
+@SuppressWarnings(value = "all")
 public class ThreadStop extends Thread {
     private int i = 0,j = 0;
     private Thread print;

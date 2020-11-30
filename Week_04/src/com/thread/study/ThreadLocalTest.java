@@ -2,6 +2,7 @@ package com.thread.study;
 
 public class ThreadLocalTest {
     public static ThreadLocal<String> val = new ThreadLocal<>();
+    @SuppressWarnings(value = "all")
     public void test() throws InterruptedException {
         val.set("Hello world");
         String v = val.get();

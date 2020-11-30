@@ -3,7 +3,7 @@ package com.thread.study;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.locks.LockSupport;
-
+@SuppressWarnings(value = "all")
 public class ThreadCommunication {
     //共享变量
     private static String content = "-";

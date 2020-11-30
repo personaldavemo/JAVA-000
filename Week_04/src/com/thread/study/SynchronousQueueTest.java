@@ -3,6 +3,7 @@ package com.thread.study;
 import java.util.concurrent.SynchronousQueue;
 
 public class SynchronousQueueTest {
+    @SuppressWarnings(value = "all")
     public static void main(String[] args) throws InterruptedException {
         SynchronousQueue<Integer> synchronousQueue = new SynchronousQueue<>();
         Thread put = new Thread(() ->{

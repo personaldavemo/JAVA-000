@@ -1,5 +1,5 @@
 package com.thread.study;
-
+@SuppressWarnings(value = "all")
 public class ThreadStopWithFlag extends Thread {
     private volatile static boolean flag = true;
 

@@ -2,7 +2,7 @@ package com.thread.study;
 
 import java.util.List;
 import java.util.concurrent.*;
-
+@SuppressWarnings(value = "all")
 public class ThreadPoolTest {
     /**
      * 线程池测试方法

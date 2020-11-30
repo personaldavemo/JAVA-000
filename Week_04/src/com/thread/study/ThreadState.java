@@ -10,6 +10,7 @@ package com.thread.study;
  * Time-waiting--->Thread.sleep()/parkNanos/parkUtil
  * Terminated
  */
+@SuppressWarnings(value = "all")
 public class ThreadState {
     public static void main(String[] args) throws InterruptedException {
         /**
