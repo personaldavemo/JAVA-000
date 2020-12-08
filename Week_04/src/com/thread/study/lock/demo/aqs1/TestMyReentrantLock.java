@@ -1,4 +1,5 @@
-package com.thread.study.lock.demo;
+package com.thread.study.lock.demo.aqs1;
+
 @SuppressWarnings("all")
 public class TestMyReentrantLock {
     volatile static int i = 0;

@@ -1,4 +1,4 @@
-package com.thread.study.lock.demo;
+package com.thread.study.lock.demo.aqs1;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
