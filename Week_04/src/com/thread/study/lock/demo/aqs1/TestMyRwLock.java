@@ -18,6 +18,8 @@ public class                                                                    
                     testAdd();
                     lock.unlockWrite();
                 }else {
+
+                    
                     lock.readLock();
                     System.out.println(i);
                     lock.unLockRead();
