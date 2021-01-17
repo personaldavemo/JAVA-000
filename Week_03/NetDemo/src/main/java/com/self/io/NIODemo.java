@@ -17,19 +17,19 @@ public class NIODemo {
      */
     private static ByteBuffer byteBuffer = null;
 
-    private static final int ONE_BYTE = 1024;
+    private static final int BYTE_VAL = 1024;
 
     /**
      * buffer实例
      */
     public static void bufferTest() {
         //1.分配Buffer空间
-        byteBuffer = ByteBuffer.allocate(ONE_BYTE);
+        byteBuffer = ByteBuffer.allocate(BYTE_VAL);
         printLogger();
 
         //2.写入缓冲区
         byte[] bytes = new byte[]{1,2,3,4,5};
-        //预期写入写入5bit
+        //预期写入写入5字节位
         byteBuffer.put(bytes);
         logger.info("After put in buffer");
         printLogger();
@@ -79,7 +79,7 @@ public class NIODemo {
         //文件缓冲区
         FileInputStream fis = new FileInputStream("D:\\java-study\\JAVA-000\\Week_03\\NetDemo\\src\\main\\resources\\hello.txt");
         FileChannel inChannel = fis.getChannel();
-        ByteBuffer buffer = ByteBuffer.allocate(ONE_BYTE);
+        ByteBuffer buffer = ByteBuffer.allocate(BYTE_VAL);
         int length;
         while ((length = inChannel.read(buffer)) != -1) {
             buffer.flip();
@@ -143,7 +143,7 @@ public class NIODemo {
 
         is = new FileInputStream(source);
         os = new FileOutputStream(dest);
-        byte[] buffer = new byte[ONE_BYTE];
+        byte[] buffer = new byte[BYTE_VAL];
         int read;
         while ((read = is.read(buffer)) != -1) {
             os.write(buffer,0,read);
@@ -186,7 +186,7 @@ public class NIODemo {
         FileChannel outChannel = fos.getChannel();
 
         int length;
-        ByteBuffer buffer = ByteBuffer.allocate(ONE_BYTE);
+        ByteBuffer buffer = ByteBuffer.allocate(BYTE_VAL);
         long size = inChannel.size();
         long pos = 0;
         long count = 0;
@@ -200,7 +200,8 @@ public class NIODemo {
 //            buffer.clear();
 //        }
         while (pos < size) {
-            count = size - pos > ONE_BYTE ? 1024 : size - pos;
+            //当不足1024字节时就不过多读取了
+            count = size - pos > BYTE_VAL ? 1024 : size - pos;
             pos = pos + outChannel.transferFrom(inChannel,pos,count);
         }
         outChannel.force(true);
