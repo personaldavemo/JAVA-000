@@ -153,11 +153,11 @@ public class ThreadCommunication {
 //        Thread consumer = new Thread(() ->{
 //            if (goods == null){
 //                //死锁情况
-////                try {
-////                    Thread.sleep(5000L);
-////                } catch (InterruptedException e) {
-////                    e.printStackTrace();
-////                }
+//                try {
+//                    Thread.sleep(5000L);
+//               } catch (InterruptedException e) {
+//                  e.printStackTrace();
+//                }
 //                synchronized (lock) {
 //                System.out.println("waiting goods");
 //                    try {
