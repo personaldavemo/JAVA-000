@@ -32,7 +32,7 @@ public class ReactorServerDemo implements Runnable {
         serverSocketChannel.configureBlocking(false);
         //注册选择器,接受一个连接
         SelectionKey selectionKey = serverSocketChannel.register(selector,SelectionKey.OP_ACCEPT);
-        //接受一个事件
+        //接受一个事件，添加为selectKey的属性
         selectionKey.attach(new AcceptorHandler());
     }
 
@@ -55,6 +55,7 @@ public class ReactorServerDemo implements Runnable {
     }
 
     void dispatch(SelectionKey selectionKey) {
+        //取出属性与handler配套使用
         Runnable r = (Runnable) selectionKey.attachment();
         if (r != null) {
             r.run();
