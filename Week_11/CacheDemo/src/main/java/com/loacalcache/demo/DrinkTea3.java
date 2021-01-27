@@ -104,7 +104,7 @@ public class DrinkTea3 {
 
         ListenableFuture<Boolean> washFuture = servicePool.submit(washCall);
         //烧水任务完成回调
-        Futures.addCallback(waterFuture,new FutureCallback<Boolean>() {
+        Futures.addCallback(washFuture,new FutureCallback<Boolean>() {
             @Override
             public void onSuccess(@Nullable Boolean bBoolean) {
                 if (bBoolean) {
