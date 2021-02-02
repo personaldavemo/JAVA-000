@@ -7,4 +7,8 @@
         <property name="id" value="1"/>
         <property name="name" value="Dave"/>
     </bean>
+<!--    FactoryBean定制Bean-->
+    <bean id="car" class="com.springsource.study.demo.model.CarBean">
+        <property name="carInfos" value="car1,200,10000"/>
+    </bean>
 </beans>
