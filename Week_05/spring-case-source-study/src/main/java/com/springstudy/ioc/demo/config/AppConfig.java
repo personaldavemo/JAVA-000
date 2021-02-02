@@ -1,11 +1,9 @@
 package com.springstudy.ioc.demo.config;
 
 import com.springstudy.ioc.demo.model.MagicBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -19,7 +17,19 @@ import javax.sql.DataSource;
  */
 @ComponentScan("com.springstudy.ioc.demo")
 @Configuration
+@PropertySource("condition.properties")
 public class AppConfig {
+    /**
+     * 配置文件，解决硬编码
+     * @return
+     */
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Value("${magic}")
+    private String magic;
 
     @Bean(destroyMethod = "shutdown")
     @Profile("dev")
@@ -31,6 +41,15 @@ public class AppConfig {
                 .build();
     }
 
+    /**
+     * 激活方式DispatchServlet-web.xml
+     * web应用上下文
+     * JNDI
+     * 环境变量
+     * JVM参数
+     * @ActiveProfiles
+     * @return
+     */
     @Bean
     @Profile("prod")
     public DataSource dataSourceMySql() {
@@ -42,9 +61,13 @@ public class AppConfig {
         return dataSource;
     }
 
+    /**
+     * 获取环境变量
+     * @return
+     */
     @Bean
     @Conditional(ConditionConfig.class)
     public MagicBean magicBean() {
-        return new MagicBean();
+        return new MagicBean(magic);
     }
 }

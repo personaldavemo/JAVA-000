@@ -3,6 +3,10 @@ package com.springstudy.ioc.demo.model;
 public class MagicBean {
     private String magic;
 
+    public MagicBean(String magic) {
+        this.magic = magic;
+    }
+
     public String getMagic() {
         return magic;
     }
