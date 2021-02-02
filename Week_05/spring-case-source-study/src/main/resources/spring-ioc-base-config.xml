@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:Context="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <Context:component-scan base-package="com.springstudy.ioc.demo"/>
+    <context:component-scan base-package="com.springstudy.ioc.demo"/>
     <bean id="helloService" class="com.springstudy.ioc.demo.service.HelloServiceImpl">
         <!--set属性-->
         <property name="contentDao" ref="contentDao"/>
     </bean>
     <bean id="contentDao" class="com.springstudy.ioc.demo.dao.ContentDaoImpl"/>
+
+    <bean id="actionService" class="com.springstudy.ioc.demo.service.ActionServiceImpl">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Alice"/>
+        <constructor-arg name="likes">
+            <list>
+                <value>cat</value>
+                <value>dog</value>
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>

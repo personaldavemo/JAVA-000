@@ -1,5 +1,6 @@
 package com.springstudy.ioc.demo.run;
 
+import com.springstudy.ioc.demo.service.ActionService;
 import com.springstudy.ioc.demo.service.HelloService;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
@@ -11,5 +12,10 @@ public class DIRun1 {
         HelloService service = context.getBean("helloService", HelloService.class);
         String s = service.sayHello();
         System.out.println(s);
+
+        System.out.println("----------------------------------------");
+        ActionService actionService = context.getBean(ActionService.class);
+        actionService.walk();
+        System.out.println(actionService);
     }
 }
