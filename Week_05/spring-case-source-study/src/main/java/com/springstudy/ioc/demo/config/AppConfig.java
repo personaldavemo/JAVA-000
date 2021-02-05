@@ -1,5 +1,6 @@
 package com.springstudy.ioc.demo.config;
 
+import com.springstudy.ioc.demo.el.ElDemo;
 import com.springstudy.ioc.demo.model.MagicBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
@@ -30,6 +31,10 @@ public class AppConfig {
 
     @Value("${magic}")
     private String magic;
+    @Value("#{systemProperties['eldemo.name']}")
+    private String name;
+    @Value("#{systemProperties['eldemo.info']}")
+    private String info;
 
     @Bean(destroyMethod = "shutdown")
     @Profile("dev")
@@ -69,5 +74,10 @@ public class AppConfig {
     @Conditional(ConditionConfig.class)
     public MagicBean magicBean() {
         return new MagicBean(magic);
+    }
+
+    @Bean
+    public ElDemo elDemo() {
+        return new ElDemo(name,info);
     }
 }

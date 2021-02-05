@@ -2,10 +2,13 @@ package com.springsudy.ioc.demo.cd;
 
 import com.springstudy.ioc.demo.config.AppConfig;
 import com.springstudy.ioc.demo.config.Office;
+import com.springstudy.ioc.demo.el.ElDemo;
 import com.springstudy.ioc.demo.model.MagicBean;
 import com.springstudy.ioc.demo.service.Food;
 import com.springstudy.ioc.demo.service.Worker;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,8 @@ public class ProfileDataSourceAndConditionTest {
     @Autowired
     @Office
     private Worker worker;
+    @Autowired
+    private ElDemo elDemo;
 
     /**
      * 测试环境H2数据源测试
@@ -64,6 +69,19 @@ public class ProfileDataSourceAndConditionTest {
     @Test
     public void qualifierTest() {
         worker.work();
+    }
+
+    /**
+     * 设置系统变量
+     */
+    @BeforeClass
+    public static void setSystemProperties() {
+        System.setProperty("eldemo.name", "el");
+        System.setProperty("eldemo.info", "test");
+    }
+    @Test
+    public void elDemoTest() {
+        System.out.println(elDemo);
     }
 
 }
