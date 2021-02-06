@@ -1,6 +1,7 @@
 package com.springsudy.aop.demo;
 
 
+import com.springstudy.aop.demo.Encoreables;
 import com.springstudy.aop.demo.Performance;
 import com.springstudy.aop.demo.cd.CdConfig;
 import com.springstudy.aop.demo.cd.CdPlayer;
@@ -28,6 +29,13 @@ public class AopTest {
 
     @Test
     public void testAop() {
+        performance.perform();
+    }
+
+    @Test
+    public void testIntroducer() {
+        Encoreables encoreables = (Encoreables) performance;
+        encoreables.performEncore();
         performance.perform();
     }
 
