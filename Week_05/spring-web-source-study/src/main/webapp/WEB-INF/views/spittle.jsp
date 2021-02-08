@@ -8,9 +8,9 @@
   </head>
   <body>
     <div class="spittleView">
-      <div class="spittleMessage"><c:out value="${spittle.message}" /></div>
+      <div class="spittleMessage"><c:out value="${spittler.message}" /></div>
       <div>
-        <span class="spittleTime"><c:out value="${spittle.time}" /></span>
+        <span class="spittleTime"><c:out value="${spittler.time}" /></span>
       </div>
     </div>
   </body>
